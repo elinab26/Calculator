@@ -1,0 +1,3 @@
+- need to check if the nums are in the range
+- need to check if the operator is in the range
+- need to implement a JMP table
