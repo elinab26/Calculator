@@ -19,6 +19,8 @@ main:
     pushq %rbp
     movq %rsp, %rbp  
     pushq %rbx
+    pushq %r15
+    pushq %r14
     
 menu:
     subq $8, %rsp
@@ -123,6 +125,8 @@ exit:
 
     movq %rbx, %rax
     addq $8, %rsp
+    popq %r14
+    popq %r15
     popq %rbx
 
     movq %rbp, %rsp
