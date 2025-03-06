@@ -10,7 +10,7 @@ This program is a simple arithmetic calculator written in x86-64 Assembly. It pr
 
 ## Requirements
 - A Linux system with an x86-64 processor.
-- `gcc` and `nasm` installed.
+- `gcc` installed.
 
 ## Compilation and Execution
 1. Compile with GCC:
