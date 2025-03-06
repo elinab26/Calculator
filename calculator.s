@@ -6,6 +6,7 @@ num2: .string "Please enter the second number: "
 op: .string "Please enter the arithmetic operation: "
 result: .string "The result is: %d\n"
 error_str: .string "You can't do that operation\n"
+op_error_str: .string "Invalid arithmetic operation.\n"
 num_fmt: .string "%d"
 char_fmt: .string " %c"
 
@@ -44,6 +45,7 @@ menu:
     xorq %rax, %rax
     call scanf
 
+operator:
     #print the op string
     leaq op(%rip), %rdi
     xorq %rax, %rax
@@ -70,6 +72,7 @@ menu:
 
     cmpb $'/', %bl
     je div
+    jne operror
 
 add:
     movl %edi, %eax
@@ -101,6 +104,15 @@ error:
     call printf
     jmp menu
 
+operror:
+    movq %rdi, %r15
+    movq %rsi, %r14
+    movq $op_error_str, %rdi
+    xorq %rax, %rax
+    call printf
+    movq %r15, %rdi
+    movq %r14, %rsi
+    jmp operator
 
 exit:
     movl %eax, %ebx
